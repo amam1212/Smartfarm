@@ -1,0 +1,42 @@
+<table class="table table-hover">
+  <tr>
+    <th>Product</th>
+    <th>Disease Name</th>
+    <th>Date</th>
+    <th class="text-center">Update</th>
+    <th class="text-center">Delete</th>
+  </tr>
+  <tr ng-repeat="diseaseRecord in vm.diseaseRecords">
+    <td>{{diseaseRecord.product.name}}</td>
+    <td>{{diseaseRecord.name}}</td>
+    <td>{{diseaseRecord.createdDate.dayOfMonth}}-{{diseaseRecord.createdDate.monthValue}}-{{diseaseRecord.createdDate.year}}</td>
+    <td class="text-center"><a ng-href="#/listDiseaseRecord"><button class="btn btn-default"
+                                                                    ng-click="vm.updateDiseaseRecord(diseaseRecord.id)" style="width: 90%">Update</button></a></td>
+    <td class="text-center"><a ng-href="#/listDiseaseRecord"><button class="btn btn-danger"
+                                                                    ng-click="vm.deleteDiseaseRecord(diseaseRecord.id)" style="width: 90%">Delete</button></a></td>
+  </tr>
+  <tr>
+    <td>
+      <select class="form-control" ng-model="vm.diseaseRecord.product.name">
+        <option value="">- Edit Product name -</option>
+        <option ng-repeat="product in vm.products" value="{{product.name}}">{{product.name}}
+        </option>
+      </select>
+    </td>
+    <td>
+      <input type="text" class="form-control" min="1" ng-model="vm.diseaseRecord.name" placeholder="Edit Disease Name">
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <select class="form-control" ng-model="vm.newDiseaseRecord.product.name">
+        <option value="">- New Product name -</option>
+        <option ng-repeat="product in vm.products" value="{{product.name}}">{{product.name}}
+      </select>
+    </td>
+    <td>
+      <input type="text" class="form-control" min="1" ng-model="vm.newDiseaseRecord.name" placeholder="New Disease Name">
+    </td>
+    <td class="text-center" colspan="3"><button ng-click="vm.addDiseaseRecord()" class="btn btn-success" style="width: 90%">ADD</button></td>
+  </tr>
+</table>

@@ -15,12 +15,15 @@ public class ProductStockServiceImpl implements ProductStockService{
     ProductStockDao productStockDao;
     @Override
     public ProductStock create(ProductStock productStock) {
-        productStock.setCreatedDate(LocalDate.now());
+        LocalDate create = null;
+        productStock.setCreatedDate(create.now());
         return productStockDao.create(productStock);
     }
 
     @Override
     public ProductStock update(ProductStock productStock) {
+        //LocalDate update = null;
+        productStock.setCreatedDate(getProductStock(productStock.getId()).getCreatedDate());
         return productStockDao.update(productStock);
     }
 

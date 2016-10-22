@@ -22,10 +22,44 @@
         controller: 'editProductStockController',
         controllerAs: 'vm'
       })
+      .when('/listDiseaseRecord',{
+        templateUrl: 'app/diseaseRecord/diseaseRecordList.html',
+        controller: 'listDiseaseRecordController',
+        controllerAs: 'vm'
+      })
+      .when('/editDiseaseRecord/:id',{
+        templateUrl: 'app/product/diseaseRecordEdit.html',
+        controller: 'editDiseaseRecordController',
+        controllerAs: 'vm'
+      })
       .when('/monitor/environ', {
         templateUrl: 'app/environ/environMonitor.html',
         controller: 'monitorEnvironController',
-        controllerAs: 'vm'
+        controllerAs: 'vm',
+        resolve : {
+          environStat: function( environService, $log) {
+            return environService.getStatisticsOfCurrentHour();
+          }
+        }
+      })
+      .when('/listDevice', {
+        templateUrl: 'app/device/deviceList.html',
+        controller: 'listDeviceController',
+        controllerAs: 'vm',
+        resolve: {
+          devices : function(deviceService){
+            return deviceService.query().$promise;
+          }
+        }
+      }).when('/login',{
+        templateUrl:'app/security/signIn.html',
+        controller:'loginController',
+        controllerAs:'vm'
+      })
+      .when('/register',{
+        templateUrl:'app/user/signUp.html',
+        controller:'registerController',
+        controllerAs:'vm'
       })
       .otherwise({
         redirectTo: '/listProduct'

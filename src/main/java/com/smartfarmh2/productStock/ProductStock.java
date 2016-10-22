@@ -25,10 +25,10 @@ public class ProductStock implements Serializable{
     private int quantity;
     private LocalDate createdDate;
 
+
     public ProductStock(Product product, int quantity) {
         this.product = product;
         this.quantity = quantity;
         this.createdDate = LocalDate.now();
     }
-
 }

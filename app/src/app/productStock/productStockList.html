@@ -11,19 +11,32 @@
     <td>{{productStock.quantity}}-{{productStock.product.unit}}</td>
     <td>{{productStock.createdDate.dayOfMonth}}-{{productStock.createdDate.monthValue}}-{{productStock.createdDate.year}}</td>
     <td class="text-center"><a ng-href="#/listProductStock"><button class="btn btn-default"
-                                                               ng-click="vm.updateProductStock(productStock.id)" style="width: 90%">Update</button></a></td>
+                                                                    ng-click="vm.updateProductStock(productStock.id)" style="width: 90%">Update</button></a></td>
     <td class="text-center"><a ng-href="#/listProductStock"><button class="btn btn-danger"
-                                                               ng-click="vm.deleteProductStock(productStock.id)" style="width: 90%">Delete</button></a></td>
+                                                                    ng-click="vm.deleteProductStock(productStock.id)" style="width: 90%">Delete</button></a></td>
+  </tr>
+  <tr>
+    <td>
+      <select class="form-control" ng-model="vm.productStock.product.name">
+        <option value="">- Edit Product name -</option>
+        <option ng-repeat="product in vm.products" value="{{product.name}}">{{product.name}}
+        </option>
+      </select>
+    </td>
+    <td>
+      <input type="number" class="form-control" min="1" ng-model="vm.productStock.quantity" placeholder="Edit quantity">
+    </td>
   </tr>
   <tr>
     <td>
       <select class="form-control" ng-model="vm.newProductStock.product.name">
-      <option ng-repeat="product in vm.products" value="{{product.name}}">{{product.name}}
-      </option>
-    </select>
+        <option value="">- New Product name -</option>
+        <option ng-repeat="product in vm.products" value="{{product.name}}">{{product.name}}
+        </option>
+      </select>
     </td>
     <td>
-      <input type="number" class="form-control" min="1" ng-model="vm.newProductStock.quantity">
+      <input type="number" class="form-control" min="1" ng-model="vm.newProductStock.quantity" placeholder="Quantity">
     </td>
     <td class="text-center" colspan="3"><button ng-click="vm.addProductStock()" class="btn btn-success" style="width: 90%">ADD</button></td>
   </tr>

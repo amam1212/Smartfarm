@@ -1,5 +1,6 @@
 package com.smartfarmh2.product;
 
+import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,17 +11,18 @@ import java.util.List;
  */
 @Service
 public class ProductServiceImpl implements ProductService {
+
     @Autowired
-    ProductDao productDao;
+    private ProductDao productDao;
 
     public ProductServiceImpl() {
     }
 
-    //public ProductServiceImpl(ProductDao productDao) {
-     //   this.productDao = productDao;
-    //}
-
     public void setProductDao(ProductDao productDao) {
+        this.productDao = productDao;
+    }
+
+    public ProductServiceImpl(ProductDao productDao) {
         this.productDao = productDao;
     }
 
@@ -35,7 +37,10 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public void delete(Long id) { Product p = productDao.getProduct(id);productDao.delete(p); }
+    public void delete(Long id) {
+        Product p = productDao.getProduct(id);
+        productDao.delete(p);
+    }
 
     @Override
     public Product getProduct(Long id) {
@@ -46,7 +51,4 @@ public class ProductServiceImpl implements ProductService {
     public List<Product> list() {
         return productDao.list();
     }
-
-    @Override
-    public Product findByName(String name){return productDao.findByName(name); }
 }

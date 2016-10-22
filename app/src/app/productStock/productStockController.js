@@ -18,26 +18,27 @@
     productStockService.query(function (data) {
       vm.productStocks = data;
 
-      })
+    })
 
     vm.deleteProductStock = function (id) {
-        var answer = confirm("Do you want to delete the productStock?");
-        if (answer) {
-          productStockService.delete({id: id}, function () {
-            $route.reload();
-          })
-        }
-      }
-    vm.updateProductStock = function (id) {
-
-      productStockService.update({id:id},vm.productStock);
-        $route.reload();
-      }
-    vm.addProductStock = function () {
-        productStockService.save(vm.newProductStock);
-        $route.reload();
+      var answer = confirm("Do you want to delete the productStock?");
+      if (answer) {
+        productStockService.delete({id: id}, function () {
+          $route.reload();
+        })
       }
     }
+    vm.updateProductStock = function (id) {
+      vm.productStock.id = id;
+       productStockService.update({id: id},vm.productStock);
+      $route.reload();
+    }
+    vm.addProductStock = function () {
+      productStockService.save(vm.newProductStock);
+      console.log(vm.newProductStock);
+      $route.reload();
+    }
+  }
 
 
 })();

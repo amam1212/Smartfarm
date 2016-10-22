@@ -16,7 +16,6 @@ import java.util.Set;
  */
 @Entity
 @Data
-
 public class Product implements Serializable{
     @Id
     @GeneratedValue
@@ -30,4 +29,8 @@ public class Product implements Serializable{
         this.unit = unit;
     }
 
+//    public Product(Long id,String name,String unit) {
+//        this.name = name;
+//        this.unit = unit;
+//    }
 }

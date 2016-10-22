@@ -12,8 +12,11 @@ import java.util.List;
 public class ProductDaoImpl implements ProductDao {
     @Autowired
     ProductRepository productRepository;
+
     @Override
-    public Product create(Product product) {return productRepository.save(product); }
+    public Product create(Product product) {
+        return productRepository.save(product);
+    }
 
     @Override
     public Product update(Product product) {
@@ -34,7 +37,4 @@ public class ProductDaoImpl implements ProductDao {
     public List<Product> list() {
         return productRepository.findAll();
     }
-
-    @Override
-    public Product findByName(String Name) {return productRepository.findByName(Name); }
 }

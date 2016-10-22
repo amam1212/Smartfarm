@@ -23,6 +23,7 @@ public class ProductStockDaoImpl implements ProductStockDao{
 
     @Override
     public ProductStock update(ProductStock productStock) {
+        productStock.setProduct(productRepository.findByName(productStock.getProduct().getName()));
         return productStockRepository.save(productStock);
     }
 
@@ -41,4 +42,3 @@ public class ProductStockDaoImpl implements ProductStockDao{
         return productStockRepository.findAll();
     }
 }
-
