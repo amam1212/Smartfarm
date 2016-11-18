@@ -17,7 +17,6 @@
 
     productStockService.query(function (data) {
       vm.productStocks = data;
-
     })
 
     vm.deleteProductStock = function (id) {

@@ -16,12 +16,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.orm.jpa.EntityScan;
+import org.springframework.data.jpa.convert.threeten.Jsr310JpaConverters;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
-
+@EntityScan(basePackageClasses = {SmartFarmH2Application.class, Jsr310JpaConverters.class })
 @SpringBootApplication
 @EnableScheduling
 public class SmartFarmH2Application implements CommandLineRunner {

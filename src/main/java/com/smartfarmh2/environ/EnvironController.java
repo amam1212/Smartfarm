@@ -55,6 +55,7 @@ public class EnvironController {
                                          @RequestParam("humid") Double humid,
                                          @RequestParam("soil") Double soil,
                                          @RequestParam("device") String deviceName){
+        System.out.println(deviceName);
         Device device = deviceService.findOneByName(deviceName);
         if(device == null) throw new RuntimeException("Device not found");
         Environ environ = new Environ(temp,humid,soil);

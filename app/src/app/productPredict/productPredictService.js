@@ -5,14 +5,23 @@
   'use strict'
   angular
     .module('app')
-    .factory('productStockService',productStockService);
+    .factory('productPredictService', productPredictService);
 
-  /** @ngInject */
-  function productStockService($resource){
-    return $resource('/productStock/:id', { id: '@_id' }, {
-      update: {
-        method: 'PUT' // this method issues a PUT request
-      }});
-
+  function productPredictService($http, $q, $log, backendUrl) {
+    return {
+      getP: function (productName, quantity) {
+        var path = backendUrl + '/getPrediction/' + productName + '/' + quantity;
+        var deferred = $q.defer();
+        $http
+          .get(path)
+          .then(function (response) {
+            return deferred.resolve(response.data);
+          })
+          .catch(function (err) {
+            return deferred.reject(err);
+          });
+        return deferred.promise;
+      }
+    }
   }
 })();

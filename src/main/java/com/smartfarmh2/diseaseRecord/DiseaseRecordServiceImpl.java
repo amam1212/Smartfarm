@@ -31,9 +31,14 @@ public class DiseaseRecordServiceImpl implements DiseaseRecordService{
     }
 
     @Override
-    public void delete(Long id) {
-        DiseaseRecord ps = diseaseRecordDao.getDiseaseRecord(id);
-        diseaseRecordDao.delete(ps);
+    public boolean delete(Long id) {
+        DiseaseRecord dr = diseaseRecordDao.getDiseaseRecord(id);
+        diseaseRecordDao.delete(dr);
+        diseaseRecordDao.getDiseaseRecord(id);
+        if(getDiseaseRecord(id)!=null){
+            return false;
+        }
+        return true;
     }
 
     @Override

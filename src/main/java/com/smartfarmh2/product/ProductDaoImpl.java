@@ -37,4 +37,9 @@ public class ProductDaoImpl implements ProductDao {
     public List<Product> list() {
         return productRepository.findAll();
     }
+
+    @Override
+    public Product findByName(String name){
+        return productRepository.findByName(name);
+    }
 }

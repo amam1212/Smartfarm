@@ -21,12 +21,12 @@ public class DiseaseRecord implements Serializable {
     private Long id;
     @ManyToOne(fetch = FetchType.EAGER)
     private Product product;
-    private String name;
+    private String diseaseName;
     private LocalDate createdDate;
 
-    public DiseaseRecord(Product product, String name) {
+    public DiseaseRecord(Product product, String diseaseName) {
         this.product = product;
-        this.name = name;
+        this.diseaseName = diseaseName;
         this.createdDate = LocalDate.now();
     }
 }

@@ -8,7 +8,7 @@ import java.util.List;
 public interface DiseaseRecordService {
     DiseaseRecord create (DiseaseRecord diseaseRecord);
     DiseaseRecord update (DiseaseRecord diseaseRecord);
-    void delete (Long id);
+    boolean delete (Long id);
     DiseaseRecord getDiseaseRecord (Long id);
     List<DiseaseRecord> list();
 }

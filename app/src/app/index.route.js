@@ -27,6 +27,11 @@
         controller: 'listDiseaseRecordController',
         controllerAs: 'vm'
       })
+      .when('/productPredict',{
+        templateUrl: 'app/productPredict/productPredict.html',
+        controller: 'listProductPredictController',
+        controllerAs: 'vm'
+      })
       .when('/editDiseaseRecord/:id',{
         templateUrl: 'app/product/diseaseRecordEdit.html',
         controller: 'editDiseaseRecordController',

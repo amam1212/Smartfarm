@@ -1,5 +1,6 @@
 package com.smartfarmh2.productStock;
 
+import com.smartfarmh2.product.Product;
 import com.smartfarmh2.product.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -41,4 +42,10 @@ public class ProductStockDaoImpl implements ProductStockDao{
     public List<ProductStock> list() {
         return productStockRepository.findAll();
     }
+
+    @Override
+    public List<ProductStock> findByProduct(Product product){
+        return productStockRepository.findByProduct(product);
+    }
+
 }

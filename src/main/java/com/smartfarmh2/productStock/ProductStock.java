@@ -31,4 +31,6 @@ public class ProductStock implements Serializable{
         this.quantity = quantity;
         this.createdDate = LocalDate.now();
     }
+
+
 }

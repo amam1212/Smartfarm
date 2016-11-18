@@ -1,5 +1,7 @@
 package com.smartfarmh2.productStock;
 
+import com.smartfarmh2.product.Product;
+
 import java.util.List;
 
 /**
@@ -11,4 +13,5 @@ public interface ProductStockService {
     void delete (Long id);
     ProductStock getProductStock (Long id);
     List<ProductStock> list();
+    List<ProductStock> findByProduct(Product product);
 }

@@ -6,39 +6,68 @@
 
   angular
     .module('app')
-    .controller('listProductStockController', listProductStockController);
+    .controller('listProductPredictController', listProductPredictController);
   /** @ngInject */
-  function listProductStockController(productStockService,$route , productService) {
+  function listProductPredictController(productPredictService, $timeout,$route , productService, $log) {
 
     var vm = this;
-    vm.productStock = {};
+    vm.productPreict = {};
     vm.newProductStock = {};
     vm.products = productService.query();
+    vm.predict = null;
+    vm.getStatistics = getStatistics;
 
-    productStockService.query(function (data) {
-      vm.productStocks = data;
+    // productStockService.query(function (data) {
+    //   vm.productStocks = data;
+    //
+    // })
 
-    })
 
-    vm.deleteProductStock = function (id) {
-      var answer = confirm("Do you want to delete the productStock?");
-      if (answer) {
-        productStockService.delete({id: id}, function () {
-          $route.reload();
-        })
-      }
-    }
-    vm.updateProductStock = function (id) {
-      vm.productStock.id = id;
-      productStockService.update({id: id},vm.productStock);
-      $route.reload();
-    }
-    vm.addProductStock = function () {
-      productStockService.save(vm.newProductStock);
-      console.log(vm.newProductStock);
-      $route.reload();
+    // productPredictService.query(function (data) {
+    //   vm.productPredict = data;
+    //
+    // })
+
+
+    function getStatistics() {
+      var ProductName = vm.productPredict.product.name;
+      var quantity = vm.productPredict.quantity;
+     // $log.debug(ProductName, quantity)
+
+
+        productPredictService
+          .getP(ProductName,quantity)
+          .then(function(response){
+            $timeout(function(){
+              vm.statistics = response;
+              console.log(vm.statistics);
+            },0);
+          })
+          .catch(function(err){
+            $log.error(err);
+          });
+
+
+
+      // vm.getPrediction = function () {
+      // //function getPrediction() {
+      //    var ProductName = vm.productPredict.product.name;
+      //    var quantity = vm.productPredict.quantity;
+      //   productPredictService.getP(ProductName,quantity);
+      //   console.log(ProductName,quantity);
+      //
+      //   productPredictService
+      //     .getP(ProductName, quantity)
+      //     .then(function(response){
+      //       $timeout(function(){
+      //         vm.predict = response;
+      //       },0);
+      //     })
+      //     .catch(function(err){
+      //       $log.error(err);
+      //     });
+      // }
     }
   }
-
 
 })();

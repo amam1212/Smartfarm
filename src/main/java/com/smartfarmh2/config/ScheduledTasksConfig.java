@@ -74,14 +74,16 @@ public class ScheduledTasksConfig {
         // command device to turn on/off water if threshold is met
         deviceSettingService.list().forEach(deviceSetting -> {
             String deviceName = deviceService.getDevice(deviceSetting.getDevice().getId()).getName();
-            boolean shouldTurnWaterOn = deviceSetting.getWaterThresholdOn() > environStat.getAverageSoil();
-            boolean shouldTurnWaterOff = deviceSetting.getWaterThresholdOff() < environStat.getAverageSoil();
+            boolean shouldTurnWaterOn = deviceSetting.getWaterThresholdOn() >= environStat.getAverageSoil();
+            boolean shouldTurnWaterOff = deviceSetting.getWaterThresholdOff() <= environStat.getAverageSoil();
 
             //check threshold
             if(shouldTurnWaterOn){
+                System.out.println("ON");
                 turnWaterSwitch(deviceName,"on");
             }
             else if(shouldTurnWaterOff){
+                System.out.println("OFF");
                 turnWaterSwitch(deviceName,"off");
             }
         });
@@ -95,7 +97,7 @@ public class ScheduledTasksConfig {
             e.printStackTrace();
         }
         try {
-            String netPiePath = "https://api.netpie.io/microgear/" + netPieAppId + "/" + deviceName + "?retain";
+            String netPiePath = "https://api.netpie.io/microgear/" + netPieAppId + "/" + "espsmartfarmWater" + "?retain";
             restTemplate.exchange(netPiePath, HttpMethod.PUT, new HttpEntity<String>(status,httpHeaders), String.class);
         }
         catch (Exception e) {

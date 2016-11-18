@@ -29,7 +29,30 @@
       $route.reload();
     }
     vm.addProduct = function () {
-      productService.save(vm.newProduct);
+      // if(vm.newProduct.name!=vm.products.name) {
+       var i;
+      var check = true;
+
+
+        for(i=0;i<vm.products.length;i++)
+       {
+       console.log(vm.products[i].name);
+         if(vm.products[i].name == vm.newProduct.name) {
+          check = false;
+         }
+       }
+
+       if(check==true) {
+        if (vm.newProduct.name != null && vm.newProduct.unit != null) {
+          productService.save(vm.newProduct);
+        }
+        else {
+          alert("Incorrect Format");
+        }
+      }
+      else {
+        alert("Product exist..");
+      }
       $route.reload();
     }
   }

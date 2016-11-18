@@ -1,5 +1,6 @@
 package com.smartfarmh2.productStock;
 
+import com.smartfarmh2.product.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -32,7 +33,6 @@ public class ProductStockServiceImpl implements ProductStockService{
         ProductStock ps = productStockDao.getProductStock(id);
         productStockDao.delete(ps);
     }
-
     @Override
     public ProductStock getProductStock(Long id) {
         return productStockDao.getProductStock(id);
@@ -41,5 +41,10 @@ public class ProductStockServiceImpl implements ProductStockService{
     @Override
     public List<ProductStock> list() {
         return productStockDao.list();
+    }
+
+    @Override
+    public List<ProductStock> findByProduct(Product product){
+        return productStockDao.findByProduct(product);
     }
 }

@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="JRI">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/src/main/resources/libs/JRI.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/main/resources/libs/JRIEngine.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/main/resources/libs/REngine.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

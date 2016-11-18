@@ -25,8 +25,10 @@
     </td>
   </tr>
   <tr>
-    <td ><input type="text" ng-model="vm.newProduct.name" class="form-control" width="90%" placeholder="New product name"></td>
-    <td ><input type="text" ng-model="vm.newProduct.unit" class="form-control" width="90%" placeholder="New product unit"></td>
+    <td >
+      <input type="text" ng-model="vm.newProduct.name" class="form-control" width="90%" placeholder="New product name" required></td>
+    <td >
+      <input type="text" ng-model="vm.newProduct.unit" class="form-control" width="90%" placeholder="New product unit" required></td>
     <td colspan="2" class="text-center"><button ng-click="vm.addProduct()" class="btn btn-success" style="width: 90%">ADD</button></td>
   </tr>
 
