@@ -39,7 +39,7 @@
       delete $rootScope.user;
       delete $rootScope.authToken;
       $cookies.remove('authToken');
-      $location.path('/')
+      $location.path('/login')
     };
   }
 

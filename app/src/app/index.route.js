@@ -71,6 +71,11 @@
         controller:'accountRequestController',
         controllerAs:'vm'
       })
+      .when('/changePassword',{
+        templateUrl:'app/user/changePassword.html',
+        controller:'registerController',
+        controllerAs:'vm'
+      })
       .otherwise({
         redirectTo: '/listProduct'
       });

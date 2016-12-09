@@ -15,6 +15,7 @@
       vm.products = data;
     })
 
+
     vm.deleteProduct = function (id) {
       var answer = confirm("Do you want to delete the product?");
       if (answer) {

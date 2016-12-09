@@ -1,0 +1,22 @@
+<table class="table table-hover">
+  <tr>
+    <th>Username</th>
+    <th>Name</th>
+    <th class="text-center">Update</th>
+    <th class="text-center">Delete</th>
+
+  </tr>
+  <tr ng-repeat="newUser in vm.newUsers">
+    <td>{{newUser.username}}</td>
+    <td>
+      {{newUser.name}}
+    </td>
+    <td class="text-center"><a ng-href="#/newAccountRequest"><button class="btn btn-default"
+                                                               ng-click="vm.approveNewUser(newUser.id)" style="width: 90%">Approve</button></a></td>
+    <td class="text-center"><a ng-href="#/newAccountRequest"><button class="btn btn-danger"
+                                                               ng-click="vm.deleteNewUser(newUser.id)" style="width: 90%">Delete</button></a></td>
+  </tr>
+
+
+</table>
+
