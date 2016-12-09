@@ -26,6 +26,8 @@
     vm.updateProduct = function (id) {
       vm.product.id = id;
       productService.update({id:id},vm.product);
+      console.log(vm.product.id);
+      console.log(vm.product);
       $route.reload();
     }
     vm.addProduct = function () {

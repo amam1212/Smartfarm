@@ -66,6 +66,11 @@
         controller:'registerController',
         controllerAs:'vm'
       })
+      .when('/newAccountRequest',{
+        templateUrl:'app/user/newAccountRequest.html',
+        controller:'accountRequestController',
+        controllerAs:'vm'
+      })
       .otherwise({
         redirectTo: '/listProduct'
       });

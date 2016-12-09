@@ -7,16 +7,20 @@
     .run(runSecurity);
 
   /** @ngInject */
-  function runSecurity($rootScope,$location,$cookies,securityService) {
+  function runSecurity($rootScope,$location,$cookies,securityService,$log) {
     var originalPath = $location.path('/');
     var authToken = $cookies.get('authToken');
-    //$log.debug('token',authToken);
+    $log.debug('token',authToken);
     if(authToken){
       $rootScope.authToken = authToken;
       securityService.get(function (user) {
         $rootScope.user = user;
         $location.path(originalPath);
       });
+    }
+    else{
+      $log.debug("else condition");
+      $location.path('/login');
     }
     var removeErrorMsg = $rootScope.$on('$viewContentLoaded',function () {
       delete $rootScope.error;
@@ -37,10 +41,9 @@
       $cookies.remove('authToken');
       $location.path('/')
     };
-    $location.path('/');
   }
 
-  /** @ngInject */
+    /** @ngInject */
   function runBlock($log,$rootScope) {
 
     $rootScope.hasRole = function (role) {

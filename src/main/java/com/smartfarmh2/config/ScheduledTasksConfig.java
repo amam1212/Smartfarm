@@ -2,6 +2,7 @@ package com.smartfarmh2.config;
 
 import com.smartfarmh2.device.DeviceService;
 import com.smartfarmh2.device.DeviceSettingService;
+import com.smartfarmh2.environ.Environ;
 import com.smartfarmh2.environ.EnvironService;
 import com.smartfarmh2.environ.EnvironStat;
 import com.smartfarmh2.environ.EnvironStatService;
@@ -25,6 +26,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Base64;
 import java.util.Date;
+import java.util.List;
 
 @Component
 public class ScheduledTasksConfig {
@@ -41,6 +43,9 @@ public class ScheduledTasksConfig {
 
     @Autowired
     EnvironStatService environStatService;
+
+    @Autowired
+    EnvironService environService;
 
     @Autowired
     SimpMessagingTemplate simpMessagingTemplate;
@@ -71,11 +76,21 @@ public class ScheduledTasksConfig {
         EnvironStat environStat = environStatService.calculateStatOfCurrentHour();
         simpMessagingTemplate.convertAndSend("/environStat/today/hour/latest", environStat);
 
+        //use for show only
+        List<Environ> environ = environService.list();
+
+
+
         // command device to turn on/off water if threshold is met
         deviceSettingService.list().forEach(deviceSetting -> {
             String deviceName = deviceService.getDevice(deviceSetting.getDevice().getId()).getName();
-            boolean shouldTurnWaterOn = deviceSetting.getWaterThresholdOn() >= environStat.getAverageSoil();
-            boolean shouldTurnWaterOff = deviceSetting.getWaterThresholdOff() <= environStat.getAverageSoil();
+//            boolean shouldTurnWaterOn = deviceSetting.getWaterThresholdOn() >= environStat.getAverageSoil();
+//            boolean shouldTurnWaterOff = deviceSetting.getWaterThresholdOff() <= environStat.getAverageSoil();
+
+
+            //use for show only
+            boolean shouldTurnWaterOn = deviceSetting.getWaterThresholdOn() >= environ.get(environ.size()-1).getSoil();
+            boolean shouldTurnWaterOff = deviceSetting.getWaterThresholdOff() <= environ.get(environ.size()-1).getSoil();
 
             //check threshold
             if(shouldTurnWaterOn){
